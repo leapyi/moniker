@@ -410,6 +410,95 @@
   /* ─── TITLE HOVER ─── */
   .title { transition: text-shadow 0.4s; }
   .title:hover { text-shadow: 0 0 40px rgba(200,240,0,0.25); }
+    to   { left: 100vw; }
+  }
+
+  .pull-quote::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+
+  /* ─── INLINE CORNER BRACKETS ─── */
+
+  .bc-bl, .bc-br {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: rgba(200,240,0,0);
+    border-style: solid;
+    transition:
+      border-color 0.25s ease,
+      width 0.25s cubic-bezier(0.23,1,0.32,1),
+      height 0.25s cubic-bezier(0.23,1,0.32,1);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .bc-bl { bottom: -5px; left: -5px; border-width: 0 0 1.5px 1.5px; }
+  .bc-br { bottom: -5px; right: -5px; border-width: 0 1.5px 1.5px 0; }
+  .bracketable:hover > .bc-bl,
+  .bracketable:hover > .bc-br {
+    border-color: rgba(200,240,0,0.7);
+    width: 18px;
+    height: 18px;
+  }
+
+  .bracketable {
+    position: relative;
+  }
+
+  .bracketable::before,
+  .bracketable::after,
+  .bracketable > .bc-bl,
+  .bracketable > .bc-br {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: rgba(200,240,0,0);
+    border-style: solid;
+    transition:
+      border-color 0.25s ease,
+      width 0.25s cubic-bezier(0.23,1,0.32,1),
+      height 0.25s cubic-bezier(0.23,1,0.32,1),
+      opacity 0.25s ease;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* TL */
+  .bracketable::before {
+    top: -5px; left: -5px;
+    border-width: 1.5px 0 0 1.5px;
+  }
+  /* TR */
+  .bracketable::after {
+    top: -5px; right: -5px;
+    border-width: 1.5px 1.5px 0 0;
+  }
+  /* BL */
+  .bracketable .bc-bl {
+    bottom: -5px; left: -5px;
+    border-width: 0 0 1.5px 1.5px;
+  }
+  /* BR */
+  .bracketable .bc-br {
+    bottom: -5px; right: -5px;
+    border-width: 0 1.5px 1.5px 0;
+  }
+
+  .bracketable:hover::before,
+  .bracketable:hover::after,
+  .bracketable:hover .bc-bl,
+  .bracketable:hover .bc-br {
+    border-color: rgba(200,240,0,0.7);
+    width: 18px;
+    height: 18px;
+  }
 
   @media (max-width: 600px) {
     .wrapper { padding: 50px 24px 80px; }
@@ -463,46 +552,46 @@
 
   <div class="divider"><span>// core doctrine</span></div>
 
-  <div class="section">
-    <span class="section-num">01 — PURPOSE</span>
+  <div class="section bracketable">
+    <span class="bc-bl"></span><span class="bc-br"></span><span class="section-num">01 — PURPOSE</span>
     <p>I do not write code. I write <em>intent</em> — translated into logic, compressed into precision, and executed without apology. Every problem is a test case, every challenge is a constraint, and every victory is an opportunity.</p>
   </div>
 
-  <div class="section">
-    <span class="section-num">02 — METHODOLOGY</span>
+  <div class="section bracketable">
+    <span class="bc-bl"></span><span class="bc-br"></span><span class="section-num">02 — METHODOLOGY</span>
     <p>Like dynamic programming in a Knapsack, I extract the optimal from the naive. I do not brute-force my way through problems — I decompose them, identify the substructure, and build solutions that hold at every scale. Every line, every function, every edge case is accounted for. <em>No wasted cycles.</em></p>
   </div>
 
-  <div class="pull-quote">
+  <div class="pull-quote bracketable"><span class="bc-bl"></span><span class="bc-br"></span>
     <p>Discipline and focus are my <span>invariants</span>.<br>Curiosity is my heuristic.</p>
   </div>
 
-  <div class="section">
-    <span class="section-num">03 — FOUNDATION</span>
+  <div class="section bracketable">
+    <span class="bc-bl"></span><span class="bc-br"></span><span class="section-num">03 — FOUNDATION</span>
     <p>Precision, patience, and persistence fuel every move — they are constants in a world of variables. While others iterate blindly, I set boundaries. Every variable has a purpose. Every loop has a limit. Nothing runs unbounded.</p>
   </div>
 
-  <div class="code-line">
+  <div class="code-line bracketable"><span class="bc-bl"></span><span class="bc-br"></span>
     <span class="comment">// runtime constraints</span><br>
     const DISCIPLINE = true; &nbsp;<span class="comment">// invariant</span><br>
     const FOCUS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= true; &nbsp;<span class="comment">// invariant</span><br>
     let &nbsp;curiosity &nbsp;= ƒ(unknown); <span class="comment">// heuristic — always searching</span>
   </div>
 
-  <div class="section">
-    <span class="section-num">04 — BALANCE</span>
+  <div class="section bracketable">
+    <span class="bc-bl"></span><span class="bc-br"></span><span class="section-num">04 — BALANCE</span>
     <p>I balance trade-offs like a perfectly weighted binary heap — every decision made with awareness of cost, every optimization grounded in evidence. Speed against robustness. Elegance against legibility. I choose deliberately, never by default.</p>
   </div>
 
   <div class="divider"><span>// trait constants</span></div>
 
   <div class="traits">
-    <div class="trait"><span class="trait-key">precision</span><div class="trait-val">Exact to the last bit. No ambiguity survives my review.</div></div>
-    <div class="trait"><span class="trait-key">patience</span><div class="trait-val">I wait for the right solution. Not the fast one.</div></div>
-    <div class="trait"><span class="trait-key">persistence</span><div class="trait-val">Every failure is a failing test. I fix it and run again.</div></div>
-    <div class="trait"><span class="trait-key">curiosity</span><div class="trait-val">The heuristic that drives me past what is known.</div></div>
-    <div class="trait"><span class="trait-key">discipline</span><div class="trait-val">My invariant. It doesn't compile when I'm absent.</div></div>
-    <div class="trait"><span class="trait-key">optimality</span><div class="trait-val">I don't settle for O(n²) when O(n log n) exists.</div></div>
+    <div class="trait bracketable"><span class="bc-bl"></span><span class="bc-br"></span><span class="trait-key">precision</span><div class="trait-val">Exact to the last bit. No ambiguity survives my review.</div></div>
+    <div class="trait bracketable"><span class="bc-bl"></span><span class="bc-br"></span><span class="trait-key">patience</span><div class="trait-val">I wait for the right solution. Not the fast one.</div></div>
+    <div class="trait bracketable"><span class="bc-bl"></span><span class="bc-br"></span><span class="trait-key">persistence</span><div class="trait-val">Every failure is a failing test. I fix it and run again.</div></div>
+    <div class="trait bracketable"><span class="bc-bl"></span><span class="bc-br"></span><span class="trait-key">curiosity</span><div class="trait-val">The heuristic that drives me past what is known.</div></div>
+    <div class="trait bracketable"><span class="bc-bl"></span><span class="bc-br"></span><span class="trait-key">discipline</span><div class="trait-val">My invariant. It doesn't compile when I'm absent.</div></div>
+    <div class="trait bracketable"><span class="bc-bl"></span><span class="bc-br"></span><span class="trait-key">optimality</span><div class="trait-val">I don't settle for O(n²) when O(n log n) exists.</div></div>
   </div>
 
   <div class="final">
@@ -638,7 +727,13 @@
       const el = glitchEls[Math.floor(Math.random() * glitchEls.length)];
       el.classList.add('glitching');
       setTimeout(() => el.classList.remove('glitching'), 400);
-      setTimeout(triggerGlitch, 800 + Math.random() * 2400);
+      // Fire 1–3 glitches in rapid succession sometimes
+      const burst = Math.random() < 0.35;
+      if (burst) {
+        const el2 = glitchEls[Math.floor(Math.random() * glitchEls.length)];
+        setTimeout(() => { el2.classList.add('glitching'); setTimeout(() => el2.classList.remove('glitching'), 300); }, 120);
+      }
+      setTimeout(triggerGlitch, 200 + Math.random() * 900);
     }
     setTimeout(triggerGlitch, 1500);
 
@@ -686,54 +781,6 @@
       observer.observe(pq);
     }
 
-    // 6. MATRIX RAIN on hover over .title
-    const titleEl = document.querySelector('.title');
-    let matrixActive = false;
-    let matrixCanvas, matrixCtx, matrixInterval;
-
-    if (titleEl) {
-      titleEl.addEventListener('mouseenter', () => {
-        if (matrixActive) return;
-        matrixActive = true;
-        matrixCanvas = document.createElement('canvas');
-        matrixCanvas.id = 'matrix-canvas';
-        const rect = titleEl.getBoundingClientRect();
-        matrixCanvas.style.position = 'fixed';
-        matrixCanvas.style.top = rect.top + 'px';
-        matrixCanvas.style.left = rect.left + 'px';
-        matrixCanvas.style.width = rect.width + 'px';
-        matrixCanvas.style.height = rect.height + 'px';
-        matrixCanvas.width  = rect.width;
-        matrixCanvas.height = rect.height;
-        matrixCanvas.style.pointerEvents = 'none';
-        matrixCanvas.style.zIndex = '200';
-        matrixCanvas.style.opacity = '0.5';
-        document.body.appendChild(matrixCanvas);
-        matrixCtx = matrixCanvas.getContext('2d');
-
-        const cols = Math.floor(rect.width / 14);
-        const drops = Array(cols).fill(0);
-        const chars = '01アイウエオカキクケコサシスセソ:;{}[]<>/\\|=+'.split('');
-
-        matrixInterval = setInterval(() => {
-          matrixCtx.fillStyle = 'rgba(8,8,8,0.15)';
-          matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-          matrixCtx.fillStyle = '#c8f000';
-          matrixCtx.font = '12px "Share Tech Mono"';
-          drops.forEach((y, i) => {
-            const ch = chars[Math.floor(Math.random() * chars.length)];
-            matrixCtx.fillText(ch, i * 14, y * 14);
-            drops[i] = y * 14 > matrixCanvas.height && Math.random() > 0.975 ? 0 : y + 1;
-          });
-        }, 40);
-      });
-
-      titleEl.addEventListener('mouseleave', () => {
-        matrixActive = false;
-        clearInterval(matrixInterval);
-        if (matrixCanvas) matrixCanvas.remove();
-      });
-    }
 
     // 7. TRAIT CARD TILT
     document.querySelectorAll('.trait').forEach(card => {
@@ -762,6 +809,14 @@
       setInterval(updateClock, 1000);
     }
 
+
+
+
+    // MINDUSTRY HUD activate
+    setTimeout(() => {
+
+    }, 400);
+
     // 9. SECTION HIGHLIGHT on scroll
     const sections = document.querySelectorAll('.section, .pull-quote, .final');
     const sectionObserver = new IntersectionObserver(entries => {
@@ -775,5 +830,19 @@
 
   }
 </script>
+
+
+  <div class="reticle-corner tr"></div>
+  <div class="reticle-corner bl"></div>
+  <div class="reticle-corner br"></div>
+  <div class="reticle-line-h" id="reticle-lh"></div>
+  <div class="reticle-line-v" id="reticle-lv"></div>
+  <div class="reticle-label" id="reticle-label"></div>
+</div>
+
+
+  </div>
+</div>
+
 </body>
 </html>
